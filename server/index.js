@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import Nuxt from 'nuxt'
+import { Nuxt, Builder } from 'nuxt'
 import R from 'ramda'
 import { resolve } from 'path'
 
@@ -9,7 +9,7 @@ config.dev = !(process.env === 'production')
 const r = path => resolve(__dirname, path)
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3006
-const MIDDLEWARES = ['router']
+const MIDDLEWARES = ['database', 'router']
 
 class Server {
   constructor() {
@@ -27,10 +27,12 @@ class Server {
     const nuxt = await new Nuxt(config)
     if (config.dev) {
       try {
-        await nuxt.build()
+        const builder = new Builder(nuxt)
+        await builder.build()
+        // await nuxt.build()
       } catch (e) {
-        process.exit(1)
         console.log(e)
+        process.exit(1)
       }
     }
 

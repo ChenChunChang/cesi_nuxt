@@ -22,9 +22,9 @@ export const router = app => {
       ctx.body = 'Failed'
     }
   })
-  /*router.post('/wechat-hear', (ctx,next){
-
-  })*/
+  // router.post('/wechat-hear', (ctx,next){
+  //
+  // })
   app.use(router.routes())
   app.use(router.allowedMethods())
 }
