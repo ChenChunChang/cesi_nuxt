@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "ice",
+      "name": "nuxt",
       "script": "start.js",
       "env": {
         "COMMON_VARIABLE": "true"
