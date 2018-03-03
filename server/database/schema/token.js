@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+
 const Schema = mongoose.Schema
 
 const tokenSchema = new Schema({
@@ -31,6 +32,9 @@ tokenSchema.statics = {
     const token = await this.findOne({
       name: 'access_token'
     }).exec()
+    if (token && token.token) {
+      token.access_token = token.token
+    }
     return token
   },
 
